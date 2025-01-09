@@ -11,6 +11,6 @@
 5) 写一个使用了本ETX-aodv路由的含有主函数相关逻辑的.cc文件，并放到/ns-3.28/scratch文件夹之中（你也可以直接将我提供的11.cc文件复制到这个位置上）
 6) 确定ns3环境无误后，使用命令./waf 11开始运行
    
-所复现的刊物文章链接:
+复现刊物的文章链接:
 Telfor Journal, http://journal.telfor.rs/Published/Vol10No1/Vol10No1_A4.pdf
-
+参考论文主页链接：https://ieeexplore.ieee.org/document/8249315
