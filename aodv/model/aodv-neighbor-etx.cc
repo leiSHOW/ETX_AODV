@@ -1,31 +1,3 @@
-/* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
-/*
- * Copyright (c) 2009 IITP RAS
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation;
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- *
- * Based on 
- *      NS-2 AODV model developed by the CMU/MONARCH group and optimized and
- *      tuned by Samir Das and Mahesh Marina, University of Cincinnati;
- * 
- *      AODV-UU implementation by Erik Nordström of Uppsala University
- *      http://core.it.uu.se/core/index.php/AODV-UU
- *
- * Authors: Nenad Jevtic <n.jevtic@sf.bg.ac.rs>, <nen.jevtc@gmail.com>
- *          Marija Malnar <m.malnar@sf.bg.ac.rs>
- */
- 
 #include "aodv-neighbor-etx.h"
 #include "ns3/log.h"
 #include "ns3/simulator.h"
@@ -41,9 +13,6 @@ namespace aodv
 {
 
 NeighborEtx::NeighborEtx () : m_lppTimeStamp (0) {}
-
-// ETX timestamp has 12 different values: 0, 1, 2, ..., 11, 0, 1, ...
-// but 2 values are not included in etx (lpp count): current and oldest
 
 uint8_t
 NeighborEtx::CalculateNextLppTimeStamp (uint8_t currTimeStamp)
@@ -62,13 +31,6 @@ NeighborEtx::GotoNextLppTimeStamp ()
   m_lppTimeStamp = CalculateNextLppTimeStamp (m_lppTimeStamp);
 }
 
-
-// ETX timestamp has 12 different values: 0, 1, 2, ..., 11, 0, 1, ...
-// but 2 values are not included in etx (lpp count):
-// 1. curent time stamp because of jitter some nodes where transmited before this node 
-//    and some nodes will transmit after so packet count would not be fair (nodes transmitted before
-//    would be having one more higher lpp count)
-// 2. oldest time stamp will be deleted so it sholud not be ncluded in calculation of lpp count
 uint8_t 
 NeighborEtx::Lpp10bMapToCnt (uint16_t lpp10bMap)
 {
